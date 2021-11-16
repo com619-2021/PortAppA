@@ -8,6 +8,7 @@
 1. Make a copy of the `.env.sample` file as `.env`
 2. Run the following commands in the root dir:
 ```shell
+$ ./mvn clean install
 $ ./mvnw package
 $ cd docker && docker build -t springio/gs-spring-boot-docker .
 $ docker-compose up -d
