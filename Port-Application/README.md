@@ -9,7 +9,7 @@
 2. Run the following commands in the root dir:
 ```shell
 $ ./mvnw package
-$ docker build -t springio/gs-spring-boot-docker .
+$ cd docker && docker build -t springio/gs-spring-boot-docker .
 $ docker-compose up -d
 ```
 
