@@ -26,9 +26,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashfiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: List the current directory contents
-        run: ls -la
-
       - name: Build and install project with Maven
-        run: mvn -B clean install
+        run: |
+          mvn clean install
+          mvn package
         working-directory: ./Port-Application
