@@ -3,9 +3,13 @@
 # Port Application A
 
 ## Table of Contents
+- Installation
 - Local set up
 - Tools and Documentation
 - Team members
+
+## Installation
+Please visit the [Port-Application](./Port-Application) directory for a detailed installation guide
 
 ## Local set up
 * [set-up branch](https://github.com/com619-2021/PortAppA/tree/set-up) – final output environment
