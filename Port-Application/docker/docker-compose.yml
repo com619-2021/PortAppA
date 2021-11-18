@@ -7,5 +7,29 @@ services:
     volumes:
       - order-example-logs:/usr/local/tomcat/logs
 
+  db:
+    image: mysql
+    volumes:
+      - port_application:/var/lib/mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_PASSWORD
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - port-application-db
+
+networks:
+  port-application-db:
+
 volumes:
   order-example-logs: {}
+  port_application: {}
