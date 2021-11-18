@@ -1,7 +1,9 @@
-# Docker/Spring – Sample set-up
+# Port Application – Project set-up
+
+- [Documentation](https://docs.cream.camp/) – remind yourself the best project practices
 
 ## Table of Contents
-- Running
+- Installation
 - Contribution
 
 ## Installation
