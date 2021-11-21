@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.solent.smartport.portappa.impl.rest;
+package my.solent.smartport.portappa.impl.rest;
 
 
 import io.swagger.v3.oas.annotations.Operation;
