@@ -18,6 +18,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14
+          
+      - name: Test project with Maven
+        run: mvn -B clean test --file pom.xml
+        working-directory: ./Port-Application
 
       - name: Build project with Maven
         run: mvn -B package --file pom.xml
