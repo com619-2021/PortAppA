@@ -8,6 +8,10 @@ import my.solent.smartport.model.dock.dto.Dock;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 /**
  *
@@ -34,7 +38,8 @@ public class Port {
     private String status;
     
     private Boolean enabled = true;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

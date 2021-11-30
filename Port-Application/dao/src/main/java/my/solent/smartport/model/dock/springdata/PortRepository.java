@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author 1985j
  */
 @Repository
-public interface PortRepository {
+public interface PortRepository extends JpaRepository<Port, Long>{
     @Query("select p from Port p LEFT JOIN FETCH * where p.uuid = :uuid")
     public List<Port> findByUuid(@Param("uuid") String uuid);
     
