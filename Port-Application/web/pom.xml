@@ -3,33 +3,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-       <groupId>my.solent.smartport.portappa</groupId>
-       <artifactId>Port-Application</artifactId>
-       <version>1.0-SNAPSHOT</version>
+        <groupId>my.solent.smartport.portappa</groupId>
+        <artifactId>Port-Application</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>Port-Application-war</artifactId>
     <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>
-             <!-- You can copy and paste the single properties, into the pom.xml file and the Netbeans will pick them up. -->
+        <!-- You can copy and paste the single properties, into the pom.xml file and the Netbeans will pick them up. -->
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>1.6-web</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
 
     </properties>
     <dependencies>
- <dependency>
+        <dependency>
             <groupId>my.solent.smartport.portappa</groupId>
             <artifactId>Port-Application-model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-     <type>jar</type>
- </dependency>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>my.solent.smartport.portappa</groupId>
+            <artifactId>Port-Application-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>my.solent.smartport.portappa</groupId>
             <artifactId>Port-Application-service</artifactId>
             <version>${project.version}</version>
         </dependency>
-<!-- spring boot dependencies -->
+
+        <!-- spring boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -243,28 +248,144 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>2.4.4</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.7.1</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
     </dependencies>
 
     <build>
+        
         <plugins>
+            
+            <!-- this plugin downloads the swagger ui -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.webjars</groupId>
+                                    <artifactId>swagger-ui</artifactId>
+                                    <version>${swagger-ui.version}</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/swagger-ui</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- This plugin substitutes the correct openapi url to swagger -->
+            <!-- see Co-hosting Swagger UI with your Jersey REST API using Maven dependencies   -->
+            <!-- https://medium.com/shark-bytes/co-hosting-swagger-ui-with-your-jersey-rest-api-using-maven-dependencies-44d88ae85bf8 -->
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <finalName>sample</finalName>
+                    <file>${project.build.directory}/swagger-ui/META-INF/resources/webjars/swagger-ui/${swagger-ui.version}/index.html</file>
+                    <replacements>
+                        <replacement>
+                            <token>https://petstore.swagger.io/v2/swagger.json</token>
+                            <!--<value>/${project.name}/rest/openapi.json</value>-->
+                            <value>/project-web/rest/openapi.json</value>
+                        </replacement>
+                    </replacements>
                 </configuration>
             </plugin>
+            
+            <!-- this plugin builds the war including the swagger ui -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>${project.build.directory}/swagger-ui/META-INF/resources/webjars/swagger-ui/${swagger-ui.version}</directory>
+                            <targetPath>swagger-ui</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+          
+                <!-- run embedded tomcat with mvn org.codehaus.cargo:cargo-maven2-plugin:run -->
+                <!-- see https://stackoverflow.com/questions/41326911/maven-plugin-for-tomcat-9 -->
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <configuration>
+                    <container>
+                        <containerId>tomcat9x</containerId>
+                        <type>embedded</type>
+                    </container>
+                </configuration>
+            </plugin>
+
+            <!--            <plugin>
+                <groupId>io.openapitools.swagger</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>2.1.6</version>
+                <configuration>
+                    <attachSwaggerArtifact>true</attachSwaggerArtifact>
+                    <resourcePackages>
+                        <resourcePackage>my.solent.smartport.portappa.impl.rest</resourcePackage>
+                         <resourcePackage>io.openapitools.swagger.example.alternate</resourcePackage>
+                    </resourcePackages>
+                    <outputDirectory>${project.build.directory}/openapi</outputDirectory>
+                    <outputFilename>openapi</outputFilename>
+                    <outputFormats>JSON,YAML</outputFormats>
+                    <prettyPrint>true</prettyPrint>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>swagger</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classesDirectory>${project.build.directory}/openapi</classesDirectory>
+                            <classifier>openapi</classifier>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

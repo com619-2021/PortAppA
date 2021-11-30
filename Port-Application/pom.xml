@@ -54,7 +54,7 @@
             <modules>
                 <module>model</module>
                 <module>dao</module>
-                <!-- <module>service</module> -->
+                <module>service</module>
                 <module>web</module>
             </modules>
         </profile>
@@ -64,7 +64,7 @@
             <modules>
                 <module>model</module>
                 <module>dao</module>
-                <!-- <module>service</module> -->
+                <module>service</module>
                 <module>web</module>
                 <module>docker</module>
             </modules>
@@ -127,7 +127,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>

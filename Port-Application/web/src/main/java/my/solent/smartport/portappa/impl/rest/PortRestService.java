@@ -63,7 +63,7 @@ public class PortRestService {
     public Response getPorts(@Context UriInfo uriInfo){
         try{    
             ReplyMessage replyMessage = new ReplyMessage();
-            LOG.debug("/getPartys called");
+            LOG.debug("/getPorts called");
 
             if (portService == null) {
                 throw new RuntimeException("portService==null and has not been initialised");
@@ -85,10 +85,10 @@ public class PortRestService {
             return Response.status(Response.Status.OK).entity(replyMessage).build();
 
         } catch (Exception ex) {
-            LOG.error("error calling /party getPartys ", ex);
+            LOG.error("error calling /party getPorts ", ex);
             ReplyMessage replyMessage = new ReplyMessage();
             replyMessage.setCode(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
-            replyMessage.setDebugMessage("error calling /party getPartys " + ex.getMessage());
+            replyMessage.setDebugMessage("error calling /party getPorts " + ex.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(replyMessage).build();
         }
     }
@@ -96,6 +96,7 @@ public class PortRestService {
     * clones new ports and unbinds from entitymanager
     *
     * @param portList
+     *@param requestPath
     * @return
     */
     public static Set<Port> unbindPortList(Set<Port> portList, String requestPath) {
