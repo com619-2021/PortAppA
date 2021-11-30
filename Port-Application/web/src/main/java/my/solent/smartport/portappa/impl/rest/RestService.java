@@ -29,6 +29,11 @@ public class RestService {
      // SETS UP LOGGING 
     // note that log name will be org.solent.com504.project.impl.rest.RestService
     final static Logger LOG = LogManager.getLogger(RestService.class);
+    
+    { 
+        System.out.println("***********************  starting RestService");
+    
+    }
 
     // This serviceFacade object is injected by Spring
    // @Autowired(required = true)
@@ -47,6 +52,7 @@ public class RestService {
     @GET
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
+    @Path("/")
     public String message() {
         LOG.debug("project-web called");
         return "Hello, rest!";

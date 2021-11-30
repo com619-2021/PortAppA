@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("serviceFacade")
 public class ServiceFacadeImpl implements ServiceFacade {
-    @Autowired
+   // @Autowired
     private PortDAO portDao = null;
     
     // setters for DAOs

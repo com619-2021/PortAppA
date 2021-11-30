@@ -24,11 +24,11 @@ import org.springframework.context.annotation.Import;
 //    "org.solent.com504.project.impl.order.service"
 //})
 
-@ComponentScan(basePackages = {"my.solent.smartport.model.port.dto"})
+@ComponentScan(basePackages = {"my.solent.smartport.model.port.dto",
+    "com.solent.smartport.portappa.impl.service",
+    "com.solent.smartport.portappa.port.service"})
 
 //@Import({PersistenceJPAConfig.class, SecurityServiceConfiguration.class})
 public class ServiceConfiguration {
-
-
 
 }
