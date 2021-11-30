@@ -4,7 +4,6 @@
  */
 package my.solent.smartport.portappa.impl.rest;
 
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -35,6 +34,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  *
  * @author 1985j
@@ -43,25 +43,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Path("/api/v1/port/")
 public class PortRestService {
+
     final static Logger LOG = LogManager.getLogger(PortRestService.class);
-    
-    @Autowired
+
+    //@Autowired
     private PortService portService;
-    
+
     @Operation(summary = "Find all ports",
-                tags = {"Port Management API"},
-                responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation returns port list *with one entry*", content = @Content(
-                    schema = @Schema(implementation = ReplyMessage.class))),
-                    @ApiResponse(responseCode = "500", description = "internal server error")
-                })
+            tags = {"Port Management API"},
+            responses = {
+                @ApiResponse(responseCode = "200", description = "successful operation returns port list *with one entry*", content = @Content(
+                        schema = @Schema(implementation = ReplyMessage.class))),
+                @ApiResponse(responseCode = "500", description = "internal server error")
+            })
     @GET
     @Path("/port")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Transactional(readOnly = true)
-    public Response getPorts(@Context UriInfo uriInfo){
-        try{    
+    public Response getPorts(@Context UriInfo uriInfo) {
+        try {
             ReplyMessage replyMessage = new ReplyMessage();
             LOG.debug("/getPorts called");
 
@@ -92,20 +93,20 @@ public class PortRestService {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(replyMessage).build();
         }
     }
+
     /**
-    * clones new ports and unbinds from entitymanager
-    *
-    * @param portList
-     *@param requestPath
-    * @return
-    */
+     * clones new ports and unbinds from entitymanager
+     *
+     * @param portList
+     * @param requestPath
+     * @return
+     */
     public static Set<Port> unbindPortList(Set<Port> portList, String requestPath) {
         Set<Port> unboundPort = new LinkedHashSet();
 
         //decouples values from dao
         for (Port port : portList) {
             Port newPort = new Port();
-            
 
             // add absolute path href for user
             String uuid = port.getUuid();
@@ -120,9 +121,9 @@ public class PortRestService {
             newPort.setDocks(port.getDocks());
             newPort.setId(port.getId());
             newPort.setStatus(port.getStatus());
-            
+
             unboundPort.add(newPort);
         }
         return unboundPort;
-    }        
+    }
 }

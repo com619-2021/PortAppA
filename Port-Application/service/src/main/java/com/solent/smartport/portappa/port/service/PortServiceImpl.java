@@ -9,12 +9,15 @@ import my.solent.smartport.model.port.dto.Port;
 import my.solent.smartport.model.port.service.PortService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author 1985j
  */
+@Component
 public class PortServiceImpl implements PortService {
 
     

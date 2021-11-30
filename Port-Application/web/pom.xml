@@ -22,16 +22,19 @@
             <groupId>my.solent.smartport.portappa</groupId>
             <artifactId>Port-Application-model</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>my.solent.smartport.portappa</groupId>
             <artifactId>Port-Application-dao</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>my.solent.smartport.portappa</groupId>
             <artifactId>Port-Application-service</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- spring boot dependencies -->

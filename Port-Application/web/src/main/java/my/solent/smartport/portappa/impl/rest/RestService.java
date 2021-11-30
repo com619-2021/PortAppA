@@ -31,9 +31,10 @@ public class RestService {
     final static Logger LOG = LogManager.getLogger(RestService.class);
 
     // This serviceFacade object is injected by Spring
-    @Autowired(required = true)
-    @Qualifier("serviceFacade")
+   // @Autowired(required = true)
+//  @Qualifier("serviceFacade")
     ServiceFacade serviceFacade = null;
+    
     @Operation(
                tags = {"service/test"},
                summary = "all this does is ask for a text 'hello world' response",
