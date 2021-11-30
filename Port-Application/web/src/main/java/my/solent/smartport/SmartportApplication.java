@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @SpringBootApplication(scanBasePackages = {"com.solent.smartport.portappa.impl.rest",
                                             "my.solent.smartport"})
-//@SpringBootApplication
-@Controller
+
 public class SmartportApplication extends SpringBootServletInitializer  {
 
-    @RequestMapping(value = "/home")
-    public String hello(Model model, @RequestParam(value = "name") String name) {
-        model.addAttribute("name", name);
-        return "home";
-    }
+
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
