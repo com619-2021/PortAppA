@@ -6,6 +6,7 @@
 package com.solent.smartport.portappa.impl.service;
 
 //import org.solent.com504.project.impl.dao.spring.PersistenceJPAConfig;
+import my.solent.smartport.dao.port.spring.PersistenceJPAConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.context.annotation.Import;
     "com.solent.smartport.portappa.port.service"})
 
 //@Import({PersistenceJPAConfig.class, SecurityServiceConfiguration.class})
+@Import({PersistenceJPAConfig.class})
 public class ServiceConfiguration {
 
 }

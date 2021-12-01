@@ -21,6 +21,8 @@ import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.server.ResourceConfig;
 
 
@@ -52,9 +54,18 @@ import org.glassfish.jersey.server.ResourceConfig;
 )
 @ApplicationPath("/rest")
 public class RestApp extends ResourceConfig{
+    
+    final static Logger LOG = LogManager.getLogger(RestApp.class);
+    
+    
     // produces http://localhost:8080/project-web/rest/openapi.json 
     // see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Getting-started
     public RestApp() {
+            
+        {
+            LOG.debug("*************************** starting rest application");
+        }
+
         packages("com.solent.smartport.protappa.impl.rest",
                 "io.swagger.v3.jaxrs2.integration.resources"
         );

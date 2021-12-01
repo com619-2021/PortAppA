@@ -52,7 +52,7 @@ public class RestService {
     @GET
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
     @Produces({MediaType.TEXT_PLAIN})
-    @Path("/")
+    @Path("/message")
     public String message() {
         LOG.debug("project-web called");
         return "Hello, rest!";
