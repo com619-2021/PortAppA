@@ -35,6 +35,12 @@
             <AppenderRef ref="Console"/>
             <!-- <AppenderRef ref="appLog"/> -->
         </Logger>
+        
+        <Logger name="my.solent"  additivity="false" level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <!-- <AppenderRef ref="appLog"/> -->
+        </Logger>
+
 
         <!-- DEBUG -->
         <Logger name="org.hibernate.SQL" level="INFO" additivity="false">

@@ -23,8 +23,10 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 // see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#server
 // see also https://github.com/OAI/OpenAPI-Specification/blob/3.0.1/versions/3.0.1.md#serverObject
@@ -52,23 +54,29 @@ import org.glassfish.jersey.server.ResourceConfig;
                         @ServerVariable(name = "port", description = "html port", defaultValue = "8080", allowableValues = {"8080", "443"}),})
         }
 )
+@Component
 @ApplicationPath("/rest")
-public class RestApp extends ResourceConfig{
-    
+public class RestApp extends ResourceConfig {
+
     final static Logger LOG = LogManager.getLogger(RestApp.class);
-    
-    
+
     // produces http://localhost:8080/project-web/rest/openapi.json 
     // see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Getting-started
     public RestApp() {
-            
+
         {
             LOG.debug("*************************** starting rest application");
         }
 
-        packages("com.solent.smartport.protappa.impl.rest",
+        packages("my.solent.smartport.protappa.impl.rest",
                 "io.swagger.v3.jaxrs2.integration.resources"
         );
-        // configureSwagger();
+
+        // note using jul logging which is converted go log4j
+        // see https://www.javaguides.net/2018/06/jersey-rest-logging-using-loggingfeature.html
+        register(new LoggingFeature(java.util.logging.Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME),
+                java.util.logging.Level.INFO, LoggingFeature.Verbosity.PAYLOAD_ANY, 10000));
+
     }
+    // configureSwagger();
 }
