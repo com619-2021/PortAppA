@@ -69,9 +69,11 @@ public class RestApp extends ResourceConfig {
         }
 
         packages("my.solent.smartport.protappa.impl.rest",
+                "my.solent.smartport",
                 "io.swagger.v3.jaxrs2.integration.resources"
         );
 
+        // this sets up jersey server logging of messages
         // note using jul logging which is converted go log4j
         // see https://www.javaguides.net/2018/06/jersey-rest-logging-using-loggingfeature.html
         register(new LoggingFeature(java.util.logging.Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME),

@@ -41,7 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Component
-@Path("/api/v1/port/")
+@Path("/api/v1/port")
 public class PortRestService {
 
     final static Logger LOG = LogManager.getLogger(PortRestService.class);
