@@ -16,6 +16,7 @@
 
 ### macOS:
 ```shell
+$ sudo brew install maven # (prevents from using ./ hereinafter)
 $ ./mvn clean install
 $ ./mvnw package
 $ cd docker
@@ -24,6 +25,7 @@ $ docker-compose up -d
 ```
 
 ### Windows:
+Follow the [Official Maven](https://maven.apache.org/install.html) guide on installing Maven for Windows OS. There is also a very detailed guide for that from [Mkyoung](https://mkyong.com/maven/how-to-install-maven-in-windows/).
 
 ## Contribution
 - [Contribution](https://docs.cream.camp/getting-started/contribution) – remind yourself about working with Github
