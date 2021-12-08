@@ -1,5 +1,7 @@
 ![Team Port Application A – Logo](https://user-images.githubusercontent.com/43637240/140811424-dbdb20cd-05e0-41bc-adbc-46bcbc8127b8.png)
 
+[![Build Project](https://github.com/com619-2021/PortAppA/actions/workflows/build.yml/badge.svg?branch=main-application)](https://github.com/com619-2021/PortAppA/actions/workflows/build.yml)
+
 # Port Application – Project set-up
 
 - [Documentation](https://docs.cream.camp/) – remind yourself the best project practices
