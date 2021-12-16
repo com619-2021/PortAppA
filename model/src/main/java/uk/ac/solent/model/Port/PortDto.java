@@ -10,12 +10,12 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "route")
+@Table(name = "port")
 @AllArgsConstructor
 @NoArgsConstructor
 public class PortDto extends BaseModel {
 
-    @Column(name = "shipe", nullable = false)
+    @Column(name = "ship", nullable = false)
     private Integer ship;
 
     @Temporal(TemporalType.TIMESTAMP)

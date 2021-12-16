@@ -7,7 +7,7 @@ import uk.ac.solent.dao.PersistenceJPAConfig;
 
 @Configuration
 
-@ComponentScan(basePackages = {"uk.ac.solent.service.booking",
+@ComponentScan(basePackages = {"uk.ac.solent.service.portbooking",
         "uk.ac.solent.service.port",
         "uk.ac.solent.service.config",
         "uk.ac.solent.service.ship",

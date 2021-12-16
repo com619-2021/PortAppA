@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "booking")
+@Table(name = "portbooking")
 @AllArgsConstructor
 @NoArgsConstructor
 public class PortBookingDto extends BaseModel {

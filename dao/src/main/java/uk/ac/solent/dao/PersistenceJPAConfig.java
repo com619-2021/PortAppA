@@ -19,11 +19,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@ComponentScan(basePackages = {"uk.ac.solent.dao.route",
-        "uk.ac.solent.dao.booking", "uk.ac.solent.dao.ship", "uk.ac.solent.dao.user"})
+@ComponentScan(basePackages = {"uk.ac.solent.dao.port",
+        "uk.ac.solent.dao.portbooking", "uk.ac.solent.dao.ship", "uk.ac.solent.dao.user"})
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"uk.ac.solent.dao.route",
-        "uk.ac.solent.dao.booking", "uk.ac.solent.dao.ship", "uk.ac.solent.dao.user"
+@EnableJpaRepositories(basePackages = {"uk.ac.solent.dao.port",
+        "uk.ac.solent.dao.portbooking", "uk.ac.solent.dao.ship", "uk.ac.solent.dao.user"
 })
 public class PersistenceJPAConfig {
 
@@ -35,8 +35,8 @@ public class PersistenceJPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("uk.ac.solent.model.booking",
-                "uk.ac.solent.model.route",
+        em.setPackagesToScan("uk.ac.solent.model.portbooking",
+                "uk.ac.solent.model.port",
                 "uk.ac.solent.model.ship",
                 "uk.ac.solent.model.user");
 
