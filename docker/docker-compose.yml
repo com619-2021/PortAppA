@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  portapp_a_ns:
+    image: devops/portappa:1.0.0-SNAPSHOT
+    ports:
+      - "8080:8080"
+    volumes:
+      - portappa-logs:/usr/local/tomcat/logs
+
+volumes:
+  portapp_a_ns-logs: {}
