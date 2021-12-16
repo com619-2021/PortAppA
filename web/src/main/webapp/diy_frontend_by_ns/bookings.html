@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <nav id="navbar">
+            <a href="index.html" target="_self">Home</a>
+            <a href="bookings.html" target="_self">Bookings</a>
+            <a href="#" onclick="document.querySelector('#login').style.display='block'">Sign In</a>
+            <a href="#" onclick="document.querySelector('#register').style.display='block'">Sign Up</a>
+        </nav>
+    </div>
+
+    <div id="table_container">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Street</th>
+                <th>Country</th>
+                <th>University</th>
+                <th>IBAN</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>000001</td>
+                <td>Lani</td>
+                <td>Ovendale</td>
+                <td>lovendale0@w3.org</td>
+                <td>7850 Old Shore Drive</td>
+                <td>United Kingdom</td>
+                <td>University of Plymouth</td>
+                <td>BG34 MPVP 8782 88EX H1CJ SC</td>
+            </tr>
+            <tr>
+                <td>000002</td>
+                <td>Israel</td>
+                <td>Tassell</td>
+                <td>itassell1@ow.ly</td>
+                <td>245 Merchant Circle</td>
+                <td>Macedonia</td>
+                <td>South East European University</td>
+                <td>FR11 4824 2942 41H9 XBHC 46P2 O86</td>
+            </tr>
+            <tr>
+                <td>000003</td>
+                <td>Eveleen</td>
+                <td>Mercer</td>
+                <td>emercer2@ow.ly</td>
+                <td>70700 Kipling Pass</td>
+                <td>Portugal</td>
+                <td>Instituto Superior Novas Profissões - INP</td>
+                <td>GR96 7559 456P GUAN WTAJ 3VPB S0P</td>
+            </tr>
+            <tr>
+                <td>000004</td>
+                <td>Conn</td>
+                <td>Whitley</td>
+                <td>cwhitley3@wsj.com</td>
+                <td>03 Service Terrace</td>
+                <td>Albania</td>
+                <td>Epoka University</td>
+                <td>LI59 1813 2T7T VKTO 6RKE X</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="add_data_container">
+        <form action="" id="add_data_form">
+        <h3>Add Data</h3>
+            <div class="container">
+                <label for="username">ID</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <label for="username">First Name</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <label for="password">Last Name</label>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="login" class="container">
+        <form action="" id="login_form" class="container">
+         <span onclick="document.querySelector('#login').style.display='none'" id="close">&times;</span>
+            <div class="container" id="login_image_container">
+                <img id="login_image" src="Pictures/login.png" alt="Login Picture">
+            </div>
+ 
+            <div class="container">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit">Login</button>
+             </div>
+        </form> 
+     </div>
+ 
+     <div id="register" class="container">
+         <form action="" id="register_form" class="container">
+          <span onclick="document.querySelector('#register').style.display='none'" id="close">&times;</span>
+             <div class="container" id="register_image_container">
+                 <img id="register_image" src="Pictures/login.png" alt="register Picture">
+             </div>
+  
+             <div class="container">
+                 <label for="email">Email</label>
+                 <input type="email" name="email" placeholder="Email">
+                 <label for="username">Username</label>
+                 <input type="text" name="username" placeholder="Username" required>
+                 <label for="password">Password</label>
+                 <input type="password" placeholder="Password" name="password" required>
+                 <label for="password-repeat">Repeat Password</label>
+                 <input type="password" placeholder="Repeat Password" name="password-repeat" required>
+                 <button type="submit">Login</button>
+              </div>
+         </form> 
+      </div>
+</body>
+
+
