@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @RestController
 @Transactional
-public class RouteController implements BaseController<PortDto>{
+public class PortController implements BaseController<PortDto>{
 
     private final PortRepository portRepository;
 
-    public RouteController(PortRepository portRepository) {
+    public PortController(PortRepository portRepository) {
         this.portRepository = portRepository;
     }
 
